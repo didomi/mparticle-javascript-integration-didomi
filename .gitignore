@@ -117,7 +117,6 @@ build/
 *.zip
 template.json
 *.tsbuildinfo
-dist/
 lib/
 
 # Serverless directories
@@ -160,6 +159,3 @@ terraform.rc
 
 # Localstack
 .localstack
-
-# Test bundles
-test/test-bundle.js
