@@ -110,7 +110,7 @@ var DidomiKit = (function (exports) {
 
     var initialization = {
         name: 'Didomi',
-        moduleId: 9999999,
+        moduleId: 168,
         purposesMapping: {},
         initForwarder: function(forwarderSettings) {
             this.purposesMapping = this.parsePurposesMapping(

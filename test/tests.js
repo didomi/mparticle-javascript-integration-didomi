@@ -1,3 +1,5 @@
+var SDKsettings = require('./end-to-end-testapp/settings');
+
 describe('Didomi Forwarder', function() {
     var currentUser = null;
     var MessageType = {
@@ -105,55 +107,7 @@ describe('Didomi Forwarder', function() {
         }
     };
 
-    function generateMappingString(mapping) {
-        return '[' + [
-            mapping.map(function(prop) {
-                return [
-                    '{' +
-                    '&quot;jsmap&quot;:' + prop.jsmap,
-                    '&quot;map&quot;:' + '&quot;' + prop.map + '&quot;',
-                    '&quot;maptype&quot;:' + '&quot;' + prop.maptype + '&quot;',
-                    '&quot;value&quot;:' + '&quot;' + prop.value + '&quot;'+ '}'
-                ].join(',');
-            }).join(',')
-        ].join() + ']';
-    }
-
-    var mapping = [
-        {
-            jsmap: null,
-            map: 'mparticle_purpose1',
-            maptype: 'something',
-            value: 'didomi_purpose1',
-        },
-        {
-            jsmap: null,
-            map: 'mparticle_purpose2',
-            maptype: 'something',
-            value: 'didomi_purpose2',
-        },
-        {
-            jsmap: null,
-            map: 'mparticle_purpose3',
-            maptype: 'something',
-            value: 'didomilt_purpose1',
-        },
-        {
-            jsmap: null,
-            map: 'mparticle_purpose4',
-            maptype: 'something',
-            value: 'didomilt_purpose2',
-        },
-    ];
-
     beforeEach(function() {
-        // Include any specific settings that is required for initializing your SDK here
-        var sdkSettings = {
-            clientKey: '123456',
-            appId: 'abcde',
-            userIdField: 'customerId',
-            purposes: generateMappingString(mapping),
-        };
         // You may require userAttributes or userIdentities to be passed into initialization
         var userAttributes = {
             color: 'green'
@@ -168,7 +122,7 @@ describe('Didomi Forwarder', function() {
             Identity: 'facebook',
             Type: IdentityType.Facebook
         }];
-        mParticle.forwarder.init(sdkSettings, reportService.cb, true, null, userAttributes, userIdentities);
+        mParticle.forwarder.init(SDKsettings, reportService.cb, true, null, userAttributes, userIdentities);
     });
 
     it('sets values from mapping under GDPR consent using the Didomi consent status', function(done) {
